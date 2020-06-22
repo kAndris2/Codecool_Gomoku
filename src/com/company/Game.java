@@ -1,5 +1,9 @@
 package com.company;
 
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 public class Game {
     String[][] board;
     Boolean nextPlayer = false;
@@ -30,17 +34,20 @@ public class Game {
     public void play(int howMany){
         printBoard();
 
-        //System.out.println("A következő játékos " + getCurrentPlayer() + ":");
-        //mark(getMove(!nextPlayer));
+        //System.out.println("The next player is " + getCurrentPlayer.name + ":");
+        //mark(validateMove(getMove(!nextPlayer)));
     }
 
     /*
     private String getMove(Boolean check) {
+        nextPlayer = check;
         return check == true ? Player1.getMove() : Player2.getMove();
     }
     */
 
-    private void mark() {
+    private void mark(String[] move) {
+        char column = move[0].charAt(0);
+        int row = Integer.parseInt(move[1]);
 
     }
 
@@ -62,7 +69,7 @@ public class Game {
         for (int i = 0; i < board.length; i++) {
             System.out.println(i + 1 + " " + String.join("|", formatBoard(board[i])));
         }
-    } //(char)startNum
+    }
 
     private void printResult() {
 
@@ -93,9 +100,27 @@ public class Game {
         return result;
     }
 
+    private String[] validateMove(String move) {
+        String[] result = new String[2];
+        char c = move.charAt(0);
+
+        result[0] = String.valueOf(c);
+
+        String temp = "";
+        int i = 0;
+        for (char item : move.toCharArray()) {
+            if (i != 0) {
+                temp += item;
+            }
+        }
+        result[1] = temp;
+
+        return result;
+    }
+
     /*
-    private String getCurrentPlayer() {
-        return nextPlayer == true ? player1.name : player2.name;
+    private Player getCurrentPlayer() {
+        return nextPlayer == true ? player1 : player2;
     }
      */
 }

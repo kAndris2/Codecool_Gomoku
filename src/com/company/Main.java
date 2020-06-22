@@ -7,7 +7,7 @@ public class Main {
 	// write your code here
         Scanner io = new Scanner(System.in);
         Game game = new Game(5,5);
-        Player p1 = new Player("TestPlayer");
+        Player p1 = new Player("TestPlayer",'X');
         Menu mainMenu = new Menu();
 
         //Menu Starts
