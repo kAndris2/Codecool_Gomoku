@@ -2,6 +2,9 @@ package com.company;
 
 public class Game {
     String[][] board;
+    Boolean nextPlayer = false;
+    //Player player1;
+    //Player player2;
 
     public Game(int length, int width) {
         board = new String[length][width];
@@ -10,10 +13,38 @@ public class Game {
             String[] temp = new String[length];
             board[i] = temp;
         }
-        printBoard();
+        play(1);
     }
 
-    public void printBoard() {
+    public String[][] getBoard(){
+        return board;
+    }
+
+    /*
+    public void addPlayers(Player p1, Player p2) {
+        player1 = p1;
+        player2 = p2;
+    }
+    */
+
+    public void play(int howMany){
+        printBoard();
+
+        //System.out.println("A következő játékos " + getCurrentPlayer() + ":");
+        //mark(getMove(!nextPlayer));
+    }
+
+    /*
+    private String getMove(Boolean check) {
+        return check == true ? Player1.getMove() : Player2.getMove();
+    }
+    */
+
+    private void mark() {
+
+    }
+
+    private void printBoard() {
         int startNum = 65;
         String[] nums = new String[board.length + 1];
 
@@ -30,6 +61,10 @@ public class Game {
             System.out.println((char)startNum + " " + String.join("|", formatBoard(board[i])));
             startNum++;
         }
+    }
+
+    private void printResult() {
+
     }
 
     private Boolean isFull() {
@@ -56,4 +91,10 @@ public class Game {
         }
         return result;
     }
+
+    /*
+    private String getCurrentPlayer() {
+        return nextPlayer == true ? player1.name : player2.name;
+    }
+     */
 }
