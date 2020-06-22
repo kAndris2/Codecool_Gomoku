@@ -6,11 +6,11 @@ public class Game {
     //Player player1;
     //Player player2;
 
-    public Game(int length, int width) {
-        board = new String[length][width];
+    public Game(int rows, int columns) {
+        board = new String[rows][columns];
 
-        for (int i = 0; i < width; i++) {
-            String[] temp = new String[length];
+        for (int i = 0; i < rows; i++) {
+            String[] temp = new String[columns];
             board[i] = temp;
         }
         play(1);
@@ -46,22 +46,23 @@ public class Game {
 
     private void printBoard() {
         int startNum = 65;
-        String[] nums = new String[board.length + 1];
+        String[] letters = new String[board[0].length + 1];
 
-        for (int i = 0; i < nums.length; i++) {
-            if (i != 0)
-                nums[i] = String.valueOf(i);
+        for (int i = 0; i < letters.length; i++) {
+            if (i != 0) {
+                letters[i] = "" + (char) startNum;
+                startNum++;
+            }
             else
-                nums[i] = " ";
+                letters[i] = " ";
         }
 
-        System.out.println(String.join(" ", nums));
+        System.out.println(String.join(" ", letters));
 
         for (int i = 0; i < board.length; i++) {
-            System.out.println((char)startNum + " " + String.join("|", formatBoard(board[i])));
-            startNum++;
+            System.out.println(i + 1 + " " + String.join("|", formatBoard(board[i])));
         }
-    }
+    } //(char)startNum
 
     private void printResult() {
 
