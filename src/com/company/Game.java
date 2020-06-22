@@ -34,14 +34,18 @@ public class Game {
     public void play(int howMany){
         printBoard();
 
-        //System.out.println("The next player is " + getCurrentPlayer.name + ":");
-        //mark(validateMove(getMove(!nextPlayer)));
+        /*
+        while (true) {
+            System.out.println("The next player is " + getCurrentPlayer().name + ":");
+            mark(validateMove(getMove(!nextPlayer)));
+        }
+        */
     }
 
     /*
     private String getMove(Boolean check) {
         nextPlayer = check;
-        return check == true ? Player1.getMove() : Player2.getMove();
+        return getCurrentPlayer().getMove();
     }
     */
 
