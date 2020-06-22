@@ -7,8 +7,8 @@ import java.util.Hashtable;
 public class Game {
     String[][] board;
     Boolean nextPlayer = false;
-    //Player player1;
-    //Player player2;
+    Player player1;
+    Player player2;
 
     public Game(int rows, int columns) {
         board = new String[rows][columns];
@@ -24,30 +24,24 @@ public class Game {
         return board;
     }
 
-    /*
     public void addPlayers(Player p1, Player p2) {
         player1 = p1;
         player2 = p2;
     }
-    */
 
     public void play(int howMany){
         printBoard();
 
-        /*
         while (true) {
-            System.out.println("The next player is " + getCurrentPlayer().name + ":");
+            System.out.println("The next player is " + getCurrentPlayer().Name + ":");
             mark(validateMove(getMove(!nextPlayer)));
         }
-        */
     }
 
-    /*
     private String getMove(Boolean check) {
         nextPlayer = check;
         return getCurrentPlayer().getMove();
     }
-    */
 
     private void mark(String[] move) {
         char column = move[0].charAt(0);
@@ -122,9 +116,7 @@ public class Game {
         return result;
     }
 
-    /*
     private Player getCurrentPlayer() {
         return nextPlayer == true ? player1 : player2;
     }
-     */
 }

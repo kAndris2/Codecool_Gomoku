@@ -13,7 +13,8 @@ public class Player {
 
     public int getPoints(){ return Points; }
 
-    public String getMove(){
-        return null;
+    public String getMove() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }
