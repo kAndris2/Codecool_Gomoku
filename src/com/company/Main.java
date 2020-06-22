@@ -18,7 +18,7 @@ public class Main {
                 case 1:
                     System.out.println(p1.Name);
                 case 2:
-
+                    mainMenu.printSubMenu(new String[]{"test","more"});
                 case 3:
 
                 default:
