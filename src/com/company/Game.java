@@ -5,6 +5,8 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class Game {
+    final int START = 65;
+
     String[][] board;
     Boolean nextPlayer = false;
     Player player1;
@@ -17,7 +19,6 @@ public class Game {
             String[] temp = new String[columns];
             board[i] = temp;
         }
-        play(1);
     }
 
     public String[][] getBoard(){
@@ -35,6 +36,7 @@ public class Game {
         while (true) {
             System.out.println("The next player is " + getCurrentPlayer().Name + ":");
             mark(validateMove(getMove(!nextPlayer)));
+            printBoard();
         }
     }
 
@@ -44,19 +46,28 @@ public class Game {
     }
 
     private void mark(String[] move) {
-        char column = move[0].charAt(0);
+        int column = move[0].charAt(0) - START;
         int row = Integer.parseInt(move[1]);
 
+        for (int i = 0; i < board.length; i++) {
+            if (i == row) {
+                for (int n = 0; n < board[i].length; n++) {
+                    if (n == column) {
+                        board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                    }
+                }
+            }
+        }
     }
 
     private void printBoard() {
-        int startNum = 65;
+        int startLetter = START;
         String[] letters = new String[board[0].length + 1];
 
         for (int i = 0; i < letters.length; i++) {
             if (i != 0) {
-                letters[i] = "" + (char) startNum;
-                startNum++;
+                letters[i] = "" + (char) startLetter;
+                startLetter++;
             }
             else
                 letters[i] = " ";
@@ -105,10 +116,9 @@ public class Game {
         result[0] = String.valueOf(c);
 
         String temp = "";
-        int i = 0;
-        for (char item : move.toCharArray()) {
+        for (int i = 0; i < move.length(); i++) {
             if (i != 0) {
-                temp += item;
+                temp += move.charAt(i);
             }
         }
         result[1] = temp;

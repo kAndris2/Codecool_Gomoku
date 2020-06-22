@@ -9,7 +9,7 @@ public class Main {
         Game game = new Game(5,5);
         Player p1 = new Player("TestPlayer",'X');
         Menu mainMenu = new Menu();
-
+/*
         //Menu Starts
         int userChoice = -1;
         while (userChoice != 3){
@@ -25,5 +25,6 @@ public class Main {
                     System.out.println(userChoice);
             }
         }
+ */
     }
 }
