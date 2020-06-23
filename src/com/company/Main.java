@@ -25,6 +25,7 @@ public class Main {
                     p1 = new Player(name,'x');
                     String name2 = keyin.inString("Enter the name of player2");
                     p2 = new Player(name2,'o');
+                    break;
                 case 2:
                     if (p1 == null || p2 == null){
                         System.out.println("Set players first!");
@@ -32,13 +33,14 @@ public class Main {
                     }
                     else {
                         game.addPlayers(p1,p2);
-                        game.play(5);
+                        game.play(4);
                     }
-
+                    break;
                 case 3:
-
+                    break;
                 default:
                     System.out.println(userChoice);
+                    break;
             }
         }
 

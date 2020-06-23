@@ -37,8 +37,9 @@ public class Game {
             System.out.println("The next player is " + getCurrentPlayer().Name + ":");
             mark(validateMove(getMove(!nextPlayer)));
             printBoard();
-            if (isFull() || checkWon(howMany))
+            if (checkWon(howMany)){
                 break;
+            }
         }
     }
 
@@ -94,10 +95,10 @@ public class Game {
         for (int y = 0; y < magas; y++) {
             for (int x = 0; x < szeles; x++) {
                 int z = 1;
-                Boolean searching = true;
+                boolean searching = true;
                 //-Horizontal check
                 while (searching && (x+z) < szeles && board[y][x] != null) {
-                    if (board[y][x] == board[y][x+z]) {
+                    if (board[y][x].equals(board[y][x+z])) {
                         z++;
                     }
                     else {
@@ -113,7 +114,7 @@ public class Game {
                 z = 1;
                 searching = true;
                 while (searching && (y+z) < magas && board[y][x] != null) {
-                    if (board[y][x] == board[y+z][x]) {
+                    if (board[y][x].equals(board[y+z][x])) {
                         z++;
                     }
                     else {
@@ -128,7 +129,7 @@ public class Game {
                 z = 1;
                 searching = true;
                 while (searching && (x+z) < szeles && (y+z) < magas && board[y][x] != null) {
-                    if (board[y][x] == board[y+z][x+z]) {
+                    if (board[y][x].equals(board[y+z][x+z])) {
                         z++;
                     }
                     else {
@@ -143,7 +144,7 @@ public class Game {
                 z = 1;
                 searching = true;
                 while (searching && (x-z) >= 0 && (y+z) < magas && board[y][x] != null) {
-                    if (board[y][x] == board[y+z][x-z]) {
+                    if (board[y][x].equals(board[y+z][x-z])) {
                         z++;
                     }
                     else {
