@@ -80,8 +80,80 @@ public class Game {
         }
     }
 
-    private void printResult() {
+    private void printResult(String character) {
+        Player player = getPlayerByCharacter(character.charAt(0));
+        System.out.println("The winner is " + player.Name + "!");
+    }
 
+    private void checkWon(int howMany) {
+        int magas = board.length;
+        int szeles = board[0].length;
+
+        for (int y = 0; y < magas; y++) {
+            for (int x = 0; x < szeles; x++) {
+                int z = 1;
+                Boolean searching = true;
+                //-Horizontal check
+                while (searching && (x+z) < szeles && board[y][x] != null) {
+                    if (board[y][x] == board[y][x+z]) {
+                        z++;
+                    }
+                    else {
+                        searching = false;
+                    }
+                    //
+                    if (z == howMany) {
+                        printResult(board[y][x]);
+                        break;
+                    }
+                }
+                //-Vertical check
+                z = 1;
+                searching = true;
+                while (searching && (y+z) < magas && board[y][x] != null) {
+                    if (board[y][x] == board[y+z][x]) {
+                        z++;
+                    }
+                    else {
+                        searching = false;
+                    }
+                    if (z == howMany) {
+                        printResult(board[y][x]);
+                        break;
+                    }
+                }
+                //-Diagonal check (right)
+                z = 1;
+                searching = true;
+                while (searching && (x+z) < szeles && (y+z) < magas && board[y][x] != null) {
+                    if (board[y][x] == board[y+z][x+z]) {
+                        z++;
+                    }
+                    else {
+                        searching = false;
+                    }
+                    if (z == howMany) {
+                        printResult(board[y][x]);
+                        break;
+                    }
+                }
+                //-Diagonal check (left)
+                z = 1;
+                searching = true;
+                while (searching && (x-z) >= 0 && (y+z) < magas && board[y][x] != null) {
+                    if (board[y][x] == board[y+z][x-z]) {
+                        z++;
+                    }
+                    else {
+                        searching = false;
+                    }
+                    if (z == howMany) {
+                        printResult(board[y][x]);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     private Boolean isFull() {
@@ -128,5 +200,11 @@ public class Game {
 
     private Player getCurrentPlayer() {
         return nextPlayer == true ? player1 : player2;
+    }
+
+    private Player getPlayerByCharacter(char character) {
+        if (player1.Type == character)
+            return player1;
+        return player2;
     }
 }
