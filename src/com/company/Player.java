@@ -2,6 +2,7 @@ package com.company;
 import  java.util.Scanner;
 
 public class Player {
+    Keyin keyin = new Keyin();
     String Name;
     int Points;
     char Type;
@@ -14,7 +15,9 @@ public class Player {
     public int getPoints(){ return Points; }
 
     public String getMove() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        //Scanner scanner = new Scanner(System.in);
+        //return scanner.nextLine();
+        String move = keyin.inString();
+        return move;
     }
 }
