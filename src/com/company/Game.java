@@ -53,8 +53,7 @@ public class Game {
             if (i == row) {
                 for (int n = 0; n < board[i].length; n++) {
                     if (n == column) {
-                        //board[i][n] = String.valueOf(getCurrentPlayer().Type);
-                        board[i][n] = "X";
+                        board[i][n] = String.valueOf(getCurrentPlayer().Type);
                     }
                 }
             }
