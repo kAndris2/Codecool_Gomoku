@@ -47,13 +47,14 @@ public class Game {
 
     private void mark(String[] move) {
         int column = move[0].charAt(0) - START;
-        int row = Integer.parseInt(move[1]);
+        int row = Integer.parseInt(move[1]) - 1;
 
         for (int i = 0; i < board.length; i++) {
             if (i == row) {
                 for (int n = 0; n < board[i].length; n++) {
                     if (n == column) {
-                        board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                        //board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                        board[i][n] = "X";
                     }
                 }
             }
