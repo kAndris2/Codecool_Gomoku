@@ -37,6 +37,8 @@ public class Game {
             System.out.println("The next player is " + getCurrentPlayer().Name + ":");
             mark(validateMove(getMove(!nextPlayer)));
             printBoard();
+            if (isFull() || checkWon(howMany))
+                break;
         }
     }
 
@@ -85,7 +87,7 @@ public class Game {
         System.out.println("The winner is " + player.Name + "!");
     }
 
-    private void checkWon(int howMany) {
+    private Boolean checkWon(int howMany) {
         int magas = board.length;
         int szeles = board[0].length;
 
@@ -104,7 +106,7 @@ public class Game {
                     //
                     if (z == howMany) {
                         printResult(board[y][x]);
-                        break;
+                        return true;
                     }
                 }
                 //-Vertical check
@@ -119,7 +121,7 @@ public class Game {
                     }
                     if (z == howMany) {
                         printResult(board[y][x]);
-                        break;
+                        return true;
                     }
                 }
                 //-Diagonal check (right)
@@ -134,7 +136,7 @@ public class Game {
                     }
                     if (z == howMany) {
                         printResult(board[y][x]);
-                        break;
+                        return true;
                     }
                 }
                 //-Diagonal check (left)
@@ -149,11 +151,12 @@ public class Game {
                     }
                     if (z == howMany) {
                         printResult(board[y][x]);
-                        break;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     private Boolean isFull() {
