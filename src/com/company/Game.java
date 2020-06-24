@@ -3,11 +3,14 @@ package com.company;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.ArrayList;
 
 public class Game {
     final int START = 65;
 
     String[][] board;
+    ArrayList<Integer> positions = new ArrayList<Integer>();
+
     Boolean nextPlayer = false;
     Player player1;
     Player player2;
@@ -56,10 +59,35 @@ public class Game {
             if (i == row) {
                 for (int n = 0; n < board[i].length; n++) {
                     if (n == column) {
-                        board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                        if (isAvailablePosition(column) && board[i][n] == null) {
+                            board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                            setAvailablePositions(column);
+                        }
+                        else {
+                            System.out.println("This position is not available!");
+                            if (getCurrentPlayer().equals(player1))
+                                getMove(false);
+                            getMove(true);
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private Boolean isAvailablePosition(int pos) {
+        if (positions.contains(pos) || positions.size() == 0)
+            return true;
+        return  false;
+    }
+
+    private void setAvailablePositions(int index) {
+        index--;
+        for (int i = 0; i < 3; i++) {
+            if (index >= 0 && !positions.contains(index)) {
+                positions.add(index);
+            }
+            index++;
         }
     }
 
