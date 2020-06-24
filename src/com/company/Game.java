@@ -37,7 +37,6 @@ public class Game {
         printBoard();
 
         while (true) {
-            System.out.println("The next player is " + getCurrentPlayer().Name + ":");
             mark(validateMove(getMove(!nextPlayer)));
             printBoard();
             if (checkWon(howMany)){
@@ -48,6 +47,7 @@ public class Game {
 
     private String getMove(Boolean check) {
         nextPlayer = check;
+        System.out.println("The next player is " + getCurrentPlayer().Name + ":");
         return getCurrentPlayer().getMove();
     }
 
@@ -66,8 +66,8 @@ public class Game {
                         else {
                             System.out.println("This position is not available!");
                             if (getCurrentPlayer().equals(player1))
-                                getMove(false);
-                            getMove(true);
+                                getMove(true);
+                            getMove(false);
                         }
                     }
                 }

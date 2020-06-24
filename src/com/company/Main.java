@@ -33,7 +33,7 @@ public class Main {
                     }
                     else {
                         game.addPlayers(p1,p2);
-                        game.play(5);
+                        game.play(3);
                     }
                     break;
                 case 3:
