@@ -57,8 +57,8 @@ public class Game {
     }
 
     private String getMove(Boolean check) {
-        Player currentPlayer = getCurrentPlayer();
         nextPlayer = check;
+        Player currentPlayer = getCurrentPlayer();
 
         System.out.println("\nRemaining stones: " + currentPlayer.Stones + "pc");
         System.out.println("The next player is " + currentPlayer.Name + ":");
