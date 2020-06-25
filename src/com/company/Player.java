@@ -5,11 +5,13 @@ public class Player {
     Keyin keyin = new Keyin();
     String Name;
     int Points;
+    int Stones;
     char Type;
 
     Player(String name, char type){
         Name = name;
         Type = type;
+        Stones = 100;
     }
 
     public int getPoints(){ return Points; }

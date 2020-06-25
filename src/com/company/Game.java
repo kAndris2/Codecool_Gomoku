@@ -40,11 +40,20 @@ public class Game {
         while (true) {
             mark(validateMove(getMove(!nextPlayer)));
             printBoard();
+
             if (checkWon(howMany)){
                 break;
             }
 
+            if (isFull() || CountStones() == 0) {
+                printResult("", false);
+                break;
+            }
         }
+    }
+
+    private Integer CountStones() {
+        return player1.Stones + player2.Stones;
     }
 
     private String getMove(Boolean check) {
@@ -56,19 +65,21 @@ public class Game {
     private void mark(String[] move) {
         int column = move[0].charAt(0) - START;
         int row = Integer.parseInt(move[1]) - 1;
+        Player currentPlayer = getCurrentPlayer();
 
         for (int i = 0; i < board.length; i++) {
             if (i == row) {
                 for (int n = 0; n < board[i].length; n++) {
                     if (n == column) {
                         if (isAvailablePosition(row, column) && board[i][n] == null) {
-                            board[i][n] = String.valueOf(getCurrentPlayer().Type);
+                            board[i][n] = String.valueOf(currentPlayer.Type);
+                            currentPlayer.Stones--;
                             steps++;
                             setAvailablePositions(row, column);
                         }
                         else {
                             System.out.println("This position is not available!");
-                            if (getCurrentPlayer().equals(player1))
+                            if (currentPlayer.equals(player1))
                                 getMove(true);
                             getMove(false);
                         }
@@ -153,9 +164,13 @@ public class Game {
         }
     }
 
-    private void printResult(String character) {
-        Player player = getPlayerByCharacter(character.charAt(0));
-        System.out.println("The winner is " + player.Name + "!");
+    private void printResult(String character, Boolean mode) {
+        if (mode) {
+            Player player = getPlayerByCharacter(character.charAt(0));
+            System.out.println("The winner is " + player.Name + "!");
+        }
+        else
+            System.out.println("TIE!");
     }
 
     private Boolean checkWon(int howMany) {
@@ -176,7 +191,7 @@ public class Game {
                     }
                     //
                     if (z == howMany) {
-                        printResult(board[y][x]);
+                        printResult(board[y][x], true);
                         return true;
                     }
                 }
@@ -191,7 +206,7 @@ public class Game {
                         searching = false;
                     }
                     if (z == howMany) {
-                        printResult(board[y][x]);
+                        printResult(board[y][x], true);
                         return true;
                     }
                 }
@@ -206,7 +221,7 @@ public class Game {
                         searching = false;
                     }
                     if (z == howMany) {
-                        printResult(board[y][x]);
+                        printResult(board[y][x], true);
                         return true;
                     }
                 }
@@ -221,7 +236,7 @@ public class Game {
                         searching = false;
                     }
                     if (z == howMany) {
-                        printResult(board[y][x]);
+                        printResult(board[y][x], true);
                         return true;
                     }
                 }
