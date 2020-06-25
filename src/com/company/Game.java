@@ -144,7 +144,6 @@ public class Game {
             }
             rowValue++;
         }
-        System.out.println(positions.toString());
     }
 
     private void printBoard() {
