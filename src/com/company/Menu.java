@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -32,5 +33,9 @@ public class Menu {
         }
         swValue = keyin.inInt("Select option: ");
         return swValue;
+    }
+
+    public static void clearScr() {
+        System.out.print("\033[H\033[2J");
     }
 }

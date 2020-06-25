@@ -1,9 +1,11 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.ArrayList;
+
 
 public class Game {
     final int START = 65;
@@ -42,6 +44,7 @@ public class Game {
             if (checkWon(howMany)){
                 break;
             }
+
         }
     }
 

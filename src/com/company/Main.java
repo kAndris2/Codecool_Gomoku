@@ -1,9 +1,11 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 	// write your code here
         Keyin keyin = new Keyin();
         Scanner io = new Scanner(System.in);
@@ -12,12 +14,9 @@ public class Main {
         Player p2 = null;
         Menu mainMenu = new Menu();
 
-
-
-
         //Menu Starts
         int userChoice = -1;
-        while (userChoice != 3){
+        while (userChoice != 3) {
             userChoice = mainMenu.printMainMenu();
             switch (userChoice) {
                 case 1:
