@@ -19,7 +19,7 @@ public class Player {
     public String getMove() {
         //Scanner scanner = new Scanner(System.in);
         //return scanner.nextLine();
-        String move = keyin.inString();
+        String move = keyin.inString().toUpperCase();
         return move;
     }
 }
