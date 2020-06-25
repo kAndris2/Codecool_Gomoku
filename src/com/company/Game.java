@@ -57,9 +57,12 @@ public class Game {
     }
 
     private String getMove(Boolean check) {
+        Player currentPlayer = getCurrentPlayer();
         nextPlayer = check;
-        System.out.println("The next player is " + getCurrentPlayer().Name + ":");
-        return getCurrentPlayer().getMove();
+
+        System.out.println("\nRemaining stones: " + currentPlayer.Stones + "pc");
+        System.out.println("The next player is " + currentPlayer.Name + ":");
+        return currentPlayer.getMove();
     }
 
     private void mark(String[] move) {
@@ -159,8 +162,10 @@ public class Game {
 
         System.out.println(String.join(" ", letters));
 
+        int index = 0;
         for (int i = 0; i < board.length; i++) {
-            System.out.println(i + 1 + whiteSpace(i+1) + String.join("|", formatBoard(board[i])));
+            index = i + 1;
+            System.out.println(index + whiteSpace(index) + String.join("|", formatBoard(board[i])));
         }
     }
 
