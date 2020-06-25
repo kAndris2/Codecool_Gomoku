@@ -59,10 +59,25 @@ public class Game {
     private String getMove(Boolean check) {
         nextPlayer = check;
         Player currentPlayer = getCurrentPlayer();
+        String move;
 
-        System.out.println("\nRemaining stones: " + currentPlayer.Stones + "pc");
-        System.out.println("The next player is " + currentPlayer.Name + ":");
-        return currentPlayer.getMove();
+        while (true) {
+            System.out.println("\nRemaining stones: " + currentPlayer.Stones + "pc");
+            System.out.println("The next player is " + currentPlayer.Name + ":");
+
+            move = currentPlayer.getMove();
+            String[] step = validateMove(move);
+
+            int column = step[0].charAt(0) - START;
+            int row = Integer.parseInt(step[1]) - 1;
+
+            if (isAvailablePosition(row, column))
+                break;
+            else
+                System.out.println("This position is not available!");
+        }
+
+        return move;
     }
 
     private void mark(String[] move) {
@@ -79,12 +94,6 @@ public class Game {
                             currentPlayer.Stones--;
                             steps++;
                             setAvailablePositions(row, column);
-                        }
-                        else {
-                            System.out.println("This position is not available!");
-                            if (currentPlayer.equals(player1))
-                                getMove(true);
-                            getMove(false);
                         }
                     }
                 }
