@@ -33,7 +33,6 @@ public class Main {
                         System.out.println("Set players first!");
                         break;
                     }
-
                     else {
                         Game game = new Game(mapHeight,mapWidth);
                         game.addPlayers(p1,p2);
