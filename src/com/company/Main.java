@@ -16,16 +16,16 @@ public class Main {
 
         //Menu Starts
         int userChoice = -1;
-        while (userChoice != 3) {
+        while (userChoice != 4) {
             userChoice = mainMenu.printMainMenu();
             switch (userChoice) {
-                case 1:
+                case 1: //Initialize players
                     String name = keyin.inString("Enter the name of player1");
                     p1 = new Player(name,'x');
                     String name2 = keyin.inString("Enter the name of player2");
                     p2 = new Player(name2,'o');
                     break;
-                case 2:
+                case 2: //Start game
                     if (p1 == null || p2 == null){
                         System.out.println("Set players first!");
                         break;
@@ -35,7 +35,26 @@ public class Main {
                         game.play(3);
                     }
                     break;
-                case 3:
+                case 3: //Settings
+                    int subChoice = -1;
+                    subChoice = mainMenu.printSubMenu(new String[]{"Options","Set Size","Set win"});
+                    switch ( subChoice){
+                        case 1: //Map size
+                            boolean isSet = true;
+                            while(isSet) {
+                                int mapWidth = keyin.inInt("Width of the map:");
+                                if (mapWidth < 14) {}
+                                int mapHeight = keyin.inInt("Height of the map:");
+                            }
+                            break;
+                        case 2: //Win condidion
+                            break;
+                        default:
+                            System.out.println(subChoice);
+                    }
+                    break;
+
+                case 4:
                     break;
                 default:
                     System.out.println(userChoice);
