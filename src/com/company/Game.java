@@ -106,16 +106,18 @@ public class Game {
             int rowV = row - 1;
             int colV = column - 1;
 
-            for (int i = 0; i < 3; i++) {
-                if (positions.containsKey(rowV)) {
-                    for (int n = 0; n < 3; n++) {
-                        if (positions.get(rowV).contains(colV)) {
-                            return true;
+            if (board[row][column] == null) {
+                for (int i = 0; i < 3; i++) {
+                    if (positions.containsKey(rowV)) {
+                        for (int n = 0; n < 3; n++) {
+                            if (positions.get(rowV).contains(colV)) {
+                                return true;
+                            }
+                            colV++;
                         }
-                        colV++;
                     }
+                    rowV++;
                 }
-                rowV++;
             }
         }
         else
