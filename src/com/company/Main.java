@@ -9,7 +9,10 @@ public class Main {
 	// write your code here
         Keyin keyin = new Keyin();
         Scanner io = new Scanner(System.in);
-        Game game = new Game(5,5);
+
+        int mapWidth = 14;
+        int mapHeight = 14;
+
         Player p1 = null;
         Player p2 = null;
         Menu mainMenu = new Menu();
@@ -30,27 +33,31 @@ public class Main {
                         System.out.println("Set players first!");
                         break;
                     }
+
                     else {
+                        Game game = new Game(mapHeight,mapWidth);
                         game.addPlayers(p1,p2);
-                        game.play(3);
+                        game.play(5);
                     }
                     break;
                 case 3: //Settings
                     int subChoice = -1;
-                    subChoice = mainMenu.printSubMenu(new String[]{"Options","Set Size","Set win"});
+                    subChoice = mainMenu.printSubMenu(new String[]{"Options","Set Size","Back"});
                     switch ( subChoice){
                         case 1: //Map size
                             boolean isSet = true;
                             while(isSet) {
-                                int mapWidth = keyin.inInt("Width of the map:");
-                                if (mapWidth < 14) {}
-                                int mapHeight = keyin.inInt("Height of the map:");
+                                mapWidth = keyin.inInt("Width of the map:");
+                                mapHeight = keyin.inInt("Height of the map:");
+                                if (mapWidth < 14 || mapHeight < 14) {System.out.println("The minimum is 14!");}
+                                else {isSet = false;}
                             }
                             break;
-                        case 2: //Win condidion
+                        case 2: //Back
                             break;
                         default:
                             System.out.println(subChoice);
+                            break;
                     }
                     break;
 

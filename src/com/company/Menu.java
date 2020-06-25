@@ -14,8 +14,9 @@ public class Menu {
         System.out.println("============================");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Set players    |");
-        System.out.println("|        2. Option 2       |");
-        System.out.println("|        3. Exit           |");
+        System.out.println("|        2. Start Game     |");
+        System.out.println("|        3. Settings       |");
+        System.out.println("|        4. Exit           |");
         System.out.println("============================");
         swValue = keyin.inInt(" Select option: ");
         return swValue;
