@@ -1,18 +1,17 @@
 package com.company;
 
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
+
 import java.util.ArrayList;
+import java.util.*;
 
 
 public class Game {
     final int START = 65;
 
     String[][] board;
-    ArrayList<Integer> positions = new ArrayList<Integer>();
+    HashMap<Integer, ArrayList<Integer>> positions = new HashMap<>();
 
+    Integer steps = 0;
     Boolean nextPlayer = false;
     Player player1;
     Player player2;
@@ -62,9 +61,10 @@ public class Game {
             if (i == row) {
                 for (int n = 0; n < board[i].length; n++) {
                     if (n == column) {
-                        if (isAvailablePosition(column) && board[i][n] == null) {
+                        if (isAvailablePosition(row, column) && board[i][n] == null) {
                             board[i][n] = String.valueOf(getCurrentPlayer().Type);
-                            setAvailablePositions(column);
+                            steps++;
+                            setAvailablePositions(row, column);
                         }
                         else {
                             System.out.println("This position is not available!");
@@ -78,20 +78,59 @@ public class Game {
         }
     }
 
-    private Boolean isAvailablePosition(int pos) {
-        if (positions.contains(pos) || positions.size() == 0)
+    private Boolean isAvailablePosition(int row, int column) {
+        if (steps >= 1) {
+            int rowV = row - 1;
+            int colV = column - 1;
+
+            for (int i = 0; i < 3; i++) {
+                if (positions.containsKey(rowV)) {
+                    for (int n = 0; n < 3; n++) {
+                        if (positions.get(rowV).contains(colV)) {
+                            return true;
+                        }
+                        colV++;
+                    }
+                }
+                rowV++;
+            }
+        }
+        else
             return true;
-        return  false;
+
+        return false;
     }
 
-    private void setAvailablePositions(int index) {
-        index--;
+    private void setAvailablePositions(int row, int column) {
+        int rowValue = row - 1;
         for (int i = 0; i < 3; i++) {
-            if (index >= 0 && !positions.contains(index)) {
-                positions.add(index);
+            if (!positions.containsKey(rowValue)) {
+                ArrayList<Integer> tempList = new ArrayList<>();
+
+                int columnValue = column - 1;
+                for (int n = 0; n < 3; n++) {
+                    if (columnValue <= board[0].length - 1 && columnValue >= 0) {
+                        tempList.add(columnValue);
+                    }
+                    columnValue++;
+                }
+
+                if (rowValue >= 0) {
+                    positions.put(rowValue, tempList);
+                }
             }
-            index++;
+            else {
+                int columnValue = column - 1;
+                for (int n = 0; n < 3; n++) {
+                    if (!positions.get(rowValue).contains(columnValue) && columnValue <= board[0].length - 1 && columnValue >= 0) {
+                        positions.get(rowValue).add(columnValue);
+                    }
+                    columnValue++;
+                }
+            }
+            rowValue++;
         }
+        System.out.println(positions.toString());
     }
 
     private void printBoard() {
