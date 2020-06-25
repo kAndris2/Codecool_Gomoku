@@ -66,6 +66,12 @@ public class Game {
             System.out.println("The next player is " + currentPlayer.Name + ":");
 
             move = currentPlayer.getMove();
+
+            if (isInvalidMove(move)) {
+                System.out.println("Invalid coordinate!");
+                continue;
+            }
+
             String[] step = validateMove(move);
 
             int column = step[0].charAt(0) - START;
@@ -78,6 +84,20 @@ public class Game {
         }
 
         return move;
+    }
+
+    private Boolean isInvalidMove(String move) {
+        for (int i = 0; i < move.length(); i++) {
+            if (i == 0) {
+                if (!Character.isLetter(move.charAt(i)))
+                    return true;
+            }
+            else {
+                if (!Character.isDigit(move.charAt(i)))
+                    return true;
+            }
+        }
+        return false;
     }
 
     private void mark(String[] move) {
