@@ -154,14 +154,20 @@ public class Game {
                 startLetter++;
             }
             else
-                letters[i] = " ";
+                letters[i] = "  ";
         }
 
         System.out.println(String.join(" ", letters));
 
         for (int i = 0; i < board.length; i++) {
-            System.out.println(i + 1 + " " + String.join("|", formatBoard(board[i])));
+            System.out.println(i + 1 + whiteSpace(i+1) + String.join("|", formatBoard(board[i])));
         }
+    }
+
+    private String whiteSpace(int index) {
+        if (index <= 9)
+            return "  ";
+        return " ";
     }
 
     private void printResult(String character, Boolean mode) {
