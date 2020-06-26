@@ -87,16 +87,20 @@ public class Game {
     }
 
     private Boolean isInvalidMove(String move) {
-        for (int i = 0; i < move.length(); i++) {
-            if (i == 0) {
-                if (!Character.isLetter(move.charAt(i)))
-                    return true;
-            }
-            else {
-                if (!Character.isDigit(move.charAt(i)))
-                    return true;
+        if (move.length() >= 2) {
+            for (int i = 0; i < move.length(); i++) {
+                if (i == 0) {
+                    if (!Character.isLetter(move.charAt(i)))
+                        return true;
+                } else {
+                    if (!Character.isDigit(move.charAt(i)))
+                        return true;
+                }
             }
         }
+        else
+            return true;
+
         return false;
     }
 
