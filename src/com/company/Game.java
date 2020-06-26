@@ -126,7 +126,7 @@ public class Game {
     }
 
     private Boolean isAvailablePosition(int row, int column) {
-        if (row > board.length || row < 0 || column > board[0].length || column < 0)
+        if (row > board.length - 1 || row < 0 || column > board[0].length - 1 || column < 0)
             return false;
 
         if (steps >= 1) {
